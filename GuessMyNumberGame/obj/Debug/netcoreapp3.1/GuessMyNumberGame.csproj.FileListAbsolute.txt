@@ -1,0 +1,11 @@
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\bin\Debug\netcoreapp3.1\GuessMyNumberGame.exe
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\bin\Debug\netcoreapp3.1\GuessMyNumberGame.deps.json
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\bin\Debug\netcoreapp3.1\GuessMyNumberGame.runtimeconfig.json
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\bin\Debug\netcoreapp3.1\GuessMyNumberGame.runtimeconfig.dev.json
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\bin\Debug\netcoreapp3.1\GuessMyNumberGame.dll
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\bin\Debug\netcoreapp3.1\GuessMyNumberGame.pdb
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\obj\Debug\netcoreapp3.1\GuessMyNumberGame.csprojAssemblyReference.cache
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\obj\Debug\netcoreapp3.1\GuessMyNumberGame.AssemblyInfoInputs.cache
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\obj\Debug\netcoreapp3.1\GuessMyNumberGame.AssemblyInfo.cs
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\obj\Debug\netcoreapp3.1\GuessMyNumberGame.dll
+C:\Users\zacha\Documents\Projects\GuessMyNumberGame\GuessMyNumberGame\GuessMyNumberGame\obj\Debug\netcoreapp3.1\GuessMyNumberGame.pdb
