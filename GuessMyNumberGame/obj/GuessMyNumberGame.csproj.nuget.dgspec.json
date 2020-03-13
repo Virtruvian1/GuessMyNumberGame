@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj": {}
+    "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj": {
+    "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj",
+        "projectUniqueName": "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj",
         "projectName": "GuessMyNumberGame",
-        "projectPath": "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj",
+        "projectPath": "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame.csproj",
         "packagesPath": "C:\\Users\\zacha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\obj\\",
+        "outputPath": "C:\\Users\\zacha\\Documents\\Projects\\GuessMyNumberGame\\GuessMyNumberGame\\GuessMyNumberGame\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zacha\\AppData\\Roaming\\NuGet\\NuGet.Config",
