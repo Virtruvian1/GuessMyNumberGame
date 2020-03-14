@@ -12,7 +12,9 @@ namespace GuessMyNumberGame
     {
         private byte _gameMode;
         public int[] gameArray;
+        public int arrayLength;
         public int chosenNum;
+        public int guessCounter;
         public double averageGuesses;
 
         Random random = new Random();
@@ -21,6 +23,7 @@ namespace GuessMyNumberGame
         {
             _gameMode = 0;
             chosenNum = 0;
+            guessCounter = 0;
             averageGuesses = 0.0;
         }
         public byte GameMode // Set _gameMode
@@ -66,7 +69,6 @@ namespace GuessMyNumberGame
         public void CreateArray()
         {
             byte mode = GameMode;
-            int arrayLength;
             switch (mode)
             {
                 case 1:
@@ -119,6 +121,90 @@ namespace GuessMyNumberGame
             }
             
         }
+        public void GuessEngine()
+        {
+            bool guessedNum = false;
+            byte mode = GameMode;
+            do
+            {
+                Console.Clear();
+                int guess;
+                switch (mode)
+                {
+                    case 1:
+                        Console.Write($"Can you guess the number? [{gameArray[0]} to {gameArray[^1]}]\r\n" +
+                                      $"You've guessed {guessCounter} times\r\n"+
+                                      $"(Please type your answer: ");
+                        guess = Convert.ToInt32(Console.ReadLine());
+                        guessedNum = BisectionalAlgorithm(guess);
+                        break;
+                    case 2:
+                        Console.Write($"Can you guess the number? [{gameArray[0]} to {gameArray[^1]}]\r\n" +
+                                      $"You've guessed {guessCounter} times\r\n" +
+                                      $"(Please type your answer: ");
+                        guess = Convert.ToInt32(Console.ReadLine());
+                        guessedNum = BisectionalAlgorithm(guess);
+                        break;
+                    case 3:
+                        guess = gameArray[random.Next(0, gameArray.Length)];
+                        Console.Write($"Can the comupter guess your number?\r\n" +
+                                      $"It's guesses from {gameArray[0]} to {gameArray[gameArray.Length - 1]}]" +
+                                      $"And the computer guessed {chosenNum}");
+                        guessedNum = BisectionalAlgorithm(guess);
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+            while (!guessedNum);
+
+            bool BisectionalAlgorithm(int guess) // Working here to fix the game, computer mode is not functional yet, show more work
+            {
+                int counter = 0;
+                if (guess < chosenNum) {
+                    guessCounter++;
+                    Console.WriteLine("The guess is too low");
+                    for (int i = guess; i < arrayLength; i++)
+                    {
+                        counter++;
+                    }
+                    arrayLength = counter;
+                    int[] dynamicArray = new int[arrayLength];
+                    for (int i = guess; i < arrayLength; i++)
+                    {
+                        dynamicArray[i] = i;
+                    }
+                    gameArray = dynamicArray;
+                    return false;
+                }
+                if (guess > chosenNum) {
+                    guessCounter++;
+                    Console.WriteLine("The guess is too high");
+                    for (int i = 0; i < guess; i++)
+                    {
+                        counter++;
+                    }
+                    arrayLength = counter;
+                    int[] dynamicArray = new int[arrayLength];
+                    for (int i = 0; i < arrayLength; i++)
+                    {
+                        dynamicArray[i] = i;
+                    }
+                    gameArray = dynamicArray;
+                    return false;
+                }
+                if (guess == chosenNum) {
+                    Console.WriteLine("The guess is right!");
+                    if (guessCounter <= averageGuesses) {
+                        Console.WriteLine($"You won, you guessed less than the average of {averageGuesses}");
+                    } else { Console.WriteLine($"You lost, you guessed more than the average of {averageGuesses}"); }
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 
     class Program
@@ -129,6 +215,7 @@ namespace GuessMyNumberGame
             Game.GetGameMode();
             Game.CreateArray();
             Game.ChooseRandom();
+            Game.GuessEngine();
         }
     }
 }
