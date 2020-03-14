@@ -1,4 +1,6 @@
 # GuessMyNumberGame
+> Last Updated: 14-Mar-20
+
 Guess My Number Game has 3 different games modes.
 - **Game Mode 1:**
 This mode is a user guessing mode. The computer randomly chooses a number from 1 to 10. And the user has Log<sub>2</sub>(10) (~Roughly 3) chances to guess the right number. 
