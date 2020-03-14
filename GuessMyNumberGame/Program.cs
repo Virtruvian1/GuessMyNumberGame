@@ -12,11 +12,16 @@ namespace GuessMyNumberGame
     {
         private byte _gameMode;
         public int[] gameArray;
+        public int chosenNum;
         public double averageGuesses;
+
+        Random random = new Random();
 
         public GameEngine() // Default Constructor
         {
             _gameMode = 0;
+            chosenNum = 0;
+            averageGuesses = 0.0;
         }
         public byte GameMode // Set _gameMode
         {
@@ -90,7 +95,30 @@ namespace GuessMyNumberGame
                 gameArray[i] = i + 1;
             }
         }
-
+        public void ChooseRandom()
+        {
+            byte mode = GameMode;
+            switch (mode)
+            {
+                case 1:
+                    chosenNum = gameArray[random.Next(0, gameArray.Length)];
+                    break;
+                case 2:
+                    chosenNum = gameArray[random.Next(0, gameArray.Length)];
+                    break;
+                case 3:
+                    try
+                    {
+                        Console.Write("Choose a number for the Computer to guess:\r\n" +
+                                      "(Please type your answer ) [ 1 to 100 ]: ");
+                        chosenNum = Convert.ToInt32(Console.ReadLine());
+                    } catch (Exception) {  }
+                    break;
+                default:
+                    break;
+            }
+            
+        }
     }
 
     class Program
@@ -100,6 +128,7 @@ namespace GuessMyNumberGame
             GameEngine Game = new GameEngine();
             Game.GetGameMode();
             Game.CreateArray();
+            Game.ChooseRandom();
         }
     }
 }
