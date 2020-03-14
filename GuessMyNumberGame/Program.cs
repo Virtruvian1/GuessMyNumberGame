@@ -12,6 +12,7 @@ namespace GuessMyNumberGame
     {
         private byte _gameMode;
         public int[] gameArray;
+        public double averageGuesses;
 
         public GameEngine() // Default Constructor
         {
@@ -60,18 +61,25 @@ namespace GuessMyNumberGame
         public void CreateArray()
         {
             byte mode = GameMode;
+            int arrayLength;
             switch (mode)
             {
                 case 1:
-                    int[] gameArray1 = new int[10];
+                    arrayLength = 10;
+                    int[] gameArray1 = new int[arrayLength];
+                    averageGuesses = Math.Log(arrayLength, 2);
                     gameArray = gameArray1;
                     break;
                 case 2:
-                    int[] gameArray2 = new int[1000];
+                    arrayLength = 1000;
+                    int[] gameArray2 = new int[arrayLength];
+                    averageGuesses = Math.Log(arrayLength, 2);
                     gameArray = gameArray2;
                     break;
                 case 3:
-                    int[] gameArray3 = new int[100];
+                    arrayLength = 100;
+                    int[] gameArray3 = new int[arrayLength];
+                    averageGuesses = Math.Log(arrayLength, 2);
                     gameArray = gameArray3;
                     break;
                 default:
