@@ -63,8 +63,18 @@ namespace GuessMyNumberGame
                           "Mode 2: Can you guess the right number 1 to 1000?\r\n\r\n" +
                           "Mode 3: Can the computer guess your number 1 to 100?\r\n\r\n" +
                           "(Please type your answer) Input: ");
-            try { GameMode = Convert.ToByte(Console.ReadLine()); }
-            catch (Exception) { };
+            try { 
+                GameMode = Convert.ToByte(Console.ReadLine());
+                Console.Clear();
+            }
+            catch (Exception) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid Input");
+                Console.ResetColor();
+                Thread.Sleep(1000);
+                Console.Clear();
+                GetGameMode();
+            }
         }
         public void CreateArray()
         {
@@ -74,25 +84,25 @@ namespace GuessMyNumberGame
                 case 1:
                     arrayLength = 10;
                     int[] gameArray1 = new int[arrayLength];
-                    averageGuesses = Math.Log(arrayLength, 2);
+                    averageGuesses = Math.Ceiling(Math.Log(arrayLength, 2));
                     gameArray = gameArray1;
                     break;
                 case 2:
                     arrayLength = 1000;
                     int[] gameArray2 = new int[arrayLength];
-                    averageGuesses = Math.Log(arrayLength, 2);
+                    averageGuesses = Math.Ceiling(Math.Log(arrayLength, 2));
                     gameArray = gameArray2;
                     break;
                 case 3:
                     arrayLength = 100;
                     int[] gameArray3 = new int[arrayLength];
-                    averageGuesses = Math.Log(arrayLength, 2);
+                    averageGuesses = Math.Ceiling(Math.Log(arrayLength, 2));
                     gameArray = gameArray3;
                     break;
                 default:
                     break;
             }
-            for (int i = 0; i < gameArray.Length; i++)
+            for (int i = 0; i < gameArray.Length; i++) // Fill array with values
             {
                 gameArray[i] = i + 1;
             }
@@ -121,88 +131,109 @@ namespace GuessMyNumberGame
             }
             
         }
-        public void GuessEngine()
-        {
+        public void GuessEngine() 
+        { // Game loop until the right number is guessed
             bool guessedNum = false;
             byte mode = GameMode;
+            int leftLimit = 1;
+            int rightLimit = gameArray.Length;
+            string pronoun;
             do
             {
                 Console.Clear();
                 int guess;
-                switch (mode)
+                try
                 {
-                    case 1:
-                        Console.Write($"Can you guess the number? [{gameArray[0]} to {gameArray[^1]}]\r\n" +
-                                      $"You've guessed {guessCounter} times\r\n"+
-                                      $"(Please type your answer: ");
-                        guess = Convert.ToInt32(Console.ReadLine());
-                        guessedNum = BisectionalAlgorithm(guess);
-                        break;
-                    case 2:
-                        Console.Write($"Can you guess the number? [{gameArray[0]} to {gameArray[^1]}]\r\n" +
-                                      $"You've guessed {guessCounter} times\r\n" +
-                                      $"(Please type your answer: ");
-                        guess = Convert.ToInt32(Console.ReadLine());
-                        guessedNum = BisectionalAlgorithm(guess);
-                        break;
-                    case 3:
-                        guess = gameArray[random.Next(0, gameArray.Length)];
-                        Console.Write($"Can the comupter guess your number?\r\n" +
-                                      $"It's guesses from {gameArray[0]} to {gameArray[gameArray.Length - 1]}]" +
-                                      $"And the computer guessed {chosenNum}");
-                        guessedNum = BisectionalAlgorithm(guess);
-                        break;
-                    default:
-                        break;
+                    switch (mode)
+                    {
+                        case 1:
+                            pronoun = "YOU";
+                            Console.Write($"Can you guess the number? [{leftLimit} to {rightLimit}]\r\n" +
+                                          $"You've guessed {guessCounter} times\r\n" +
+                                          $"(Please type your answer: ");
+                            guess = Convert.ToInt32(Console.ReadLine());
+                            guessedNum = BisectionalAlgorithm(guess);
+                            break;
+                        case 2:
+                            pronoun = "you";
+                            Console.Write($"Can you guess the number? [{leftLimit} to {rightLimit}]\r\n" +
+                                          $"You've guessed {guessCounter} times\r\n" +
+                                          $"(Please type your answer: ");
+                            guess = Convert.ToInt32(Console.ReadLine());
+                            guessedNum = BisectionalAlgorithm(guess);
+                            break;
+                        case 3:
+                            pronoun = "THE COMPUTER";
+                            guess = random.Next(leftLimit, rightLimit);
+                            Console.Write($"Can the comupter guess your number?\r\n" +
+                                          $"It's guessing from [{leftLimit} to {rightLimit}]\r\n" +
+                                          $"And the computer guessed {guess}\r\n");
+                            guessedNum = BisectionalAlgorithm(guess);
+                            break;
+                        default:
+                            break;
+                    }
+                } catch (Exception) {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid Input");
+                    Console.ResetColor();
+                    Thread.Sleep(1000);
                 }
-
-
             }
             while (!guessedNum);
 
             bool BisectionalAlgorithm(int guess) // Working here to fix the game, computer mode is not functional yet, show more work
             {
-                int counter = 0;
-                if (guess < chosenNum) {
-                    guessCounter++;
-                    Console.WriteLine("The guess is too low");
-                    for (int i = guess; i < arrayLength; i++)
-                    {
-                        counter++;
-                    }
-                    arrayLength = counter;
-                    int[] dynamicArray = new int[arrayLength];
-                    for (int i = guess; i < arrayLength; i++)
-                    {
-                        dynamicArray[i] = i;
-                    }
-                    gameArray = dynamicArray;
-                    return false;
-                }
-                if (guess > chosenNum) {
-                    guessCounter++;
-                    Console.WriteLine("The guess is too high");
-                    for (int i = 0; i < guess; i++)
-                    {
-                        counter++;
-                    }
-                    arrayLength = counter;
-                    int[] dynamicArray = new int[arrayLength];
-                    for (int i = 0; i < arrayLength; i++)
-                    {
-                        dynamicArray[i] = i;
-                    }
-                    gameArray = dynamicArray;
-                    return false;
-                }
                 if (guess == chosenNum) {
-                    Console.WriteLine("The guess is right!");
-                    if (guessCounter <= averageGuesses) {
-                        Console.WriteLine($"You won, you guessed less than the average of {averageGuesses}");
-                    } else { Console.WriteLine($"You lost, you guessed more than the average of {averageGuesses}"); }
+                    Console.Clear();
+                    string result;
+                    guessCounter++;
+                    if (guessCounter <= averageGuesses) { result = "won";  }
+                    else { result = "lost";  }
+                    Console.WriteLine($"The guess is right!\r\n" +
+                                      $"{pronoun} took {guessCounter} guessess.\r\n" +
+                                      $"The average is {averageGuesses} guessess.\r\n" +
+                                      $"The results are that {pronoun} {result}.");
                     return true;
                 }
-                return false;
+                else if (guess < chosenNum) {
+                    if (guess >= leftLimit) { 
+                        guessCounter++; 
+                        leftLimit = guess;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("The guess is too low");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                        return false;
+                    }
+                    else {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Guess within the limits");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                        return false;
+                    }
+                }
+                else //guess > chosenNum 
+                {
+                    if (guess <= rightLimit) { 
+                        guessCounter++; 
+                        rightLimit = guess;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("The guess is too high");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                        return false;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Guess within the limits");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                        return false;
+                    }
+                }
             }
         }
     }
